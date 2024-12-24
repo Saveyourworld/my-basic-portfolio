@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Portfolio Page</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Georgia, serif;
+    }
+
+    body {
+      background-color: #1e1e2e; /* Central Background Color */
+      color: #f39c12;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      position: static;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #34344a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-menu li {
+      margin-left: 20px;
+    }
+
+    .nav-menu a {
+      color: #f39c12;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #ffffff;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 15px;
+      height: 2px;
+      background-color: #f39c12;
+      margin: 2px 0;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: transparent;
+        width: 150px;
+        padding: 10px;
+        object-fit: contain;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+
+  .portfolio-hero {
+  background-color: #1e1e2e; /* Central background color */
+  text-align: center;
+  padding: 20px;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+    /* Hero Section */
+    .portfolio-hero {
+      background-color: #1e1e2e !important; /* Or the same as the body background */
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+    }
+
+    .portfolio-hero h1, .hero h2 {
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .portfolio-hero h1 {
+      font-size: 3rem;
+      color: #f39c12;
+      margin-bottom: 10px;
+    }
+
+    .portfolio-hero h2 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    .portfolio-hero .contact-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f39c12;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .portfolio-hero .contact-btn:hover {
+      background-color: #a0a76c;
+    }
+
+ /* Portfolio Section Styling */
+.portfolio-section {
+  text-align: center;
+  background-color: #1e1e2e;
+  padding: 50px 0;
+}
+
+.portfolio-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  animation: fadeInDown 1.5s ease-in-out;
+}
+
+.portfolio-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+/* Project Container */
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 0 20px;
+  object-fit: contain;
+}
+
+/* Project Box Animation */
+.project-box {
+  width: 550px;
+  height: 350px;
+  perspective: 1000px;
+  object-fit: contain;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: turnCard 8s infinite linear;
+  perspective: 1000px;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate(0, 0, 0);
+  overflow: visible;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* Add for Safari on iOS */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #333;
+  background-color: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+
+}
+
+.card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+.card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+  backface-visibility: hidden; /* Ensure it's hidden */
+  -webkit-backface-visibility: hidden; /* Add for Safari on iOS */
+}
+.card-inner {
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  
+}
+.project-image {
+  width: 600px;
+  height: 80%;
+  object-fit: contain;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* TV Stand */
+.tv-stand {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e2e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* View Site Button */
+.view-site-btn {
+  text-decoration: none;
+  color: white;
+  background-color: #f39c12;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.view-site-btn:hover {
+  background-color: #6a7031;
+}
+
+/* Keyframes for Turning Card Animation */
+@keyframes turnCard {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Fade-In Animations for Titles */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+    /* Video Advertisement */
+    .video-ad {
+      margin: 40px;
+      text-align: center;
+    }
+
+    video {
+      width: 80%;
+      border: 2px solid #f39c12;
+    }
+
+  /* Default Video Style - Desktop and Larger Screens */
+.responsive-video {
+  width: 50%; /* Default width for larger screens */
+  max-width: 900px;
+  margin: 0 auto; /* Center the video */
+  display: block;
+}
+
+/* Adjust Video Width for Tablets */
+@media (max-width: 1024px) {
+  .responsive-video {
+    width: 60%; /* Slightly larger width for smaller screens */
+  }
+}
+
+/* Adjust Video Width for Mobile Devices */
+@media (max-width: 768px) {
+  .responsive-video {
+    width: 60%; /* Full width on mobile */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
+
+/* Optional: Additional adjustments for very small screens */
+@media (max-width: 480px) {
+  .responsive-video {
+    width: 80%; /* Full screen width */
+    padding: 0 10px; /* Small padding for better view */
+  }
+}
+/* Caption Styling */
+.video-caption {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.6); /* Faint white color */
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+    /* Like Button */
+    .like-section {
+      text-align: center;
+      margin: 30px;
+    }
+
+    .like-btn {
+      padding: 10px 20px;
+      background-color: #f39c12;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .like-btn:hover {
+      background-color: #d19f4f;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">My Portfolio</div>
+    <div class="hamburger" id="hamburger-menu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="portfolio-hero">
+    <h1>Welcome to My Portfolio</h1>
+    <h2>Showcasing Creativity, innovation, and expertise - Bringing ideas to life</h2>
+    <a href="contact.html" class="contact-btn">Contact Me</a>
+  </section>
+  
+  <!-- Video Advertisement -->
+  
+
+  <section class="video-section">
+    <video class="responsive-video" id="autoplay-video" loop controls>
+      <source src="assets/WhatsApp Video 2024-12-16 at 13.22.15_9eea20c4.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <p class="video-caption">advertise here</p>
+  </section>
+    
+  <!-- Project Section -->
+<section class="portfolio-section">
+  <h2 class="portfolio-title">My Projects</h2>
+  <p class="portfolio-subtitle">Check out some of my projects</p>
+
+  <div class="project-container">
+    <!-- Project 1 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2023/12/GE-Appliances-Corporate-Website-Design.png.webp" alt="Project 1" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.geappliances.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2023/12/GE-Appliances-Corporate-Website-Design.png.webp" alt="Project 1" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.geappliances.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Deco-Glas-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://deco-glas.de/en/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Deco-Glas-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://deco-glas.de/en/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Instaclustr-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.instaclustr.com//" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Instaclustr-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.instaclustr.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Munro-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.munropartners.com.au/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Munro-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.munropartners.com.au/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Actium-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://actiumhealth.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Actium-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://actiumhealth.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Ashcroft-Law-Firm-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://ashcroftlawfirm.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Ashcroft-Law-Firm-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://ashcroftlawfirm.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 7 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Vision-Board-Media-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://deco-glas.de/en/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Vision-Board-Media-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.linkedin-makeover.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 8 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Instabase-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://deco-glas.de/en/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Instabase-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://instabase.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 9 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2023/12/K-1-Packaging-Group-Corporate-Website-Design.png.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://k1packaging.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2023/12/K-1-Packaging-Group-Corporate-Website-Design.png.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://k1packaging.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 10 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2023/12/MSoft-Corporate-Website-Design.png.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://mediasoft.team/en/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2023/12/MSoft-Corporate-Website-Design.png.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://mediasoft.team/en/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 11 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Innovify-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://innovify.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/Innovify-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://innovify.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 12 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/btov-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://btov.vc/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2022/02/btov-Corporate-Website-Example.jpg.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://btov.vc/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 13 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2023/12/PLEX-Corporate-Website-Design.png.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.plex.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2023/12/PLEX-Corporate-Website-Design.png.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.plex.com/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Project 14 -->
+    <div class="project-box">
+      <div class="card">
+        <div class="card-front">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2024/02/bearbike-corporate-website-example-980x513.png.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.bikebear.com.my/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+        <div class="card-back">
+          <img src="https://mycodelesswebsite.com/wp-content/uploads/2024/02/bearbike-corporate-website-example-980x513.png.webp" alt="Project 2" class="project-image">
+          <div class="tv-stand">
+            <a href="https://www.bikebear.com.my/" class="view-site-btn" target="_blank">View Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Add more projects here -->
+  </div>
+</section>
+
+
+
+  <!-- Like Button Section -->
+  <div class="like-section">
+    <button class="like-btn" id="like-btn">Love My Work? Send a Like</button>
+    <p id="like-count">Likes: 0</p>
+  </div>
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Like Button Logic
+    let likes = 0;
+    const likeBtn = document.getElementById('like-btn');
+    const likeCount = document.getElementById('like-count');
+
+    likeBtn.addEventListener('click', () => {
+      likes++;
+      likeCount.textContent = `Likes: ${likes}`;
+      alert('Thank you for liking my work 💝!');
+    });
+  </script>
+
+
+<!-- Reviews Section -->
+<section class="reviews-section">
+  <h2 class="reviews-title">What My Clients Say</h2>
+  <div class="reviews-container">
+    <!-- Review 1 -->
+    <div class="review-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLa-x3rbKTNoD9JW_mbUNMhb7eQAY9Nfxn3w&s" alt="Charles Gordon" class="customer-photo">
+      <h3 class="customer-name">Mary Ebuka</h3>
+      <p class="customer-review">
+        "Working with this developer was an amazing experience. The level of creativity and professionalism is unmatched!"
+      </p>
+    </div>
+
+    <!-- Review 2 -->
+    <div class="review-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyQvNh-gFXfuM_022WG3t-Bbd57aPzPCwjYQ&s" alt="Mary Ebuka" class="customer-photo">
+      <h3 class="customer-name">Charles Gordon</h3>
+      <p class="customer-review">
+        "Absolutely delighted with the website! Every detail was thoughtfully designed and perfectly executed."
+      </p>
+    </div>
+
+    <!-- Review 3 -->
+    <div class="review-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJfBXEEvMcJpf5FjY4QCudfnmZEK7bZClGvQ&s" alt="Abubakar Mike" class="customer-photo">
+      <h3 class="customer-name">Abubakar Mike</h3>
+      <p class="customer-review">
+        "The project exceeded my expectations! Highly skilled and always willing to go the extra mile. Highly recommended!"
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <p>Get connected with me on social networks:</p>
+    <div class="social-links">
+      <a href="https://www.facebook.com/saviour.raphael.547?mibextid=LQQJ4d&mibextid=LQQJ4d"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/saviourraphael?s=21"><i class="fab fa-twitter"></i></a>
+      <a href="https://wa.me/+2347026403051"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/saviourraphael1/profilecard/?igsh=Y2pzbzh5Y3o0ZWh1"><i class="fab fa-instagram"></i></a>
+      <a href="https://ng.linkedin.com/in/saviour-raphael-2a4ba2261"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/Saveyourworld"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+  <div class="footer-main">
+    <div class="footer-column">
+      <h3>Saviour Raphael</h3>
+      <p>
+        "Great web design without functionality is like a sport car with no engine." - Paul Cookson
+      </p>
+      <p>
+        "Let us take you into a deeper experience, make a moment a lasting conveyable memory. Let us help build your tribe." - Deep Immerson  
+      </p>
+    </div>
+    <div class="footer-column">
+      <h3>New Products</h3>
+      <ul>
+        <li><a href="file:///C:/Users/SaveYour/Desktop/port/index.html">Home</a></li>
+        <li><a href="https://mynextrends.com/Solar">Solar Generator</a></li>
+        <li><a href="https://selar.co/p/oftz?affiliate=oorn">BGW Regular</a></li>
+        <li><a href="https://MYD.selar.co/6wt3s0?affiliate=unmv">Hausa Trading Masterclass</a></li>
+        <li><a href="https://selar.co/p/btrl?affiliate=52ws">BODHI Trading</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Go To</h3>
+      <ul>
+        <li><a href="file:///C:/Users/SaveYour/Desktop/port/index.html">Home</a></li>
+        <li><a href="file:///C:/Users/SaveYour/Desktop/port/about.html">About</a></li>
+        <li><a href="file:///C:/Users/SaveYour/Desktop/port/portfolio.html">Portfolio</a></li>
+        <li><a href="file:///C:/Users/SaveYour/Desktop/port/contact.html">Contact</a></li>
+        <li><a href="https://t.me/savyworld">Join my team</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Contact</h3>
+      <ul>
+        <li><i class="fas fa-map-marker-alt"></i> Lekki, Lagos 101245, Nigeria</li>
+        <li><i class="fas fa-envelope"></i> saveyourraphael@gmail.com</li>
+        <li><i class="fas fa-phone"></i> +234 702 640 3051</li>
+        <li><i class="fas fa-print"></i> +234 915 413 1744</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Copyright: saveyourglobe.com</p>
+  </div>
+</footer>
+<script src="script.js" defer></script>
+</body>
+</html>

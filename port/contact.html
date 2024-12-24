@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Page</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background-color: #474757; /* Central background color */
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #474757;
+      color: #f39c12;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: #f39c12;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px;
+    }
+
+    .navbar .menu {
+      display: flex;
+      gap: 15px;
+    }
+
+    .navbar a:hover {
+      color: #5f5b44;
+    }
+
+    /* Mobile Navbar */
+    @media (max-width: 768px) {
+      .navbar .menu {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #333;
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar a {
+    font-size: 14px;
+  }
+
+  .menu {
+    width: 50%; /* Allow menu to take full width */
+    text-align: center;
+  }
+
+  .hamburger {
+    margin-left: auto; /* Align hamburger icon to the right */
+  }
+}
+
+
+      .navbar .menu.active {
+        display: flex;
+      }
+
+      .navbar .hamburger {
+        display: block;
+        cursor: pointer;
+      }
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+    }
+
+    /* Map Section */
+    .map-section {
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+  .footer-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .footer-column ul {
+    padding: 0;
+  }
+
+  .footer-column ul li {
+    margin: 5px 0;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+
+    .map-section iframe {
+  width: 100%;
+  max-width: 100%;
+  height: 300px;
+  border: none;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="portfolio.html">My Portfolio</a>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="hamburger">☰</div>
+  </div>
+
+  <!-- Map Section -->
+  <div class="map-section">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9028582313086!2d90.36710771501934!3d23.750872294619494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b85b7e17a0e5%3A0x743ef4a8b28c4e82!2sYour%20Office!5e0!3m2!1sen!2sbd!4v1678424030094!5m2!1sen!2sbd" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
+  <!-- Contact Section -->
+<section class="contact">
+  <h2>Contact Me</h2>
+  <p>Feel free to reach out through the form below or connect with me on social media!</p>
+  <form class="contact-form" onsubmit="sendToWhatsApp(event)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Your Email" required>
+    
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+    
+    <label for="note">Your Note:</label>
+    <textarea id="note" name="note" placeholder="Your Message"></textarea>
+    
+    <button type="submit" class="btn">Send</button>
+  </form>
+
+  <script>
+    function sendToWhatsApp(event) {
+      event.preventDefault(); // Prevent form from submitting normally
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const note = document.getElementById('note').value; // Corrected field ID
+
+      const whatsappNumber = "+2347026403051"; // Replace with your WhatsApp number
+      const text = `Hello, I am ${name}. \nEmail: ${email}\nPhone: ${phone}\nMessage: ${note}`;
+
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank'); // Open WhatsApp in a new tab
+    }
+  </script>
+</section>
+
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('.menu');
+
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+
+<!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <p>Get connected with me on social networks:</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/saviour.raphael.547?mibextid=LQQJ4d&mibextid=LQQJ4d"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/saviourraphael?s=21"><i class="fab fa-twitter"></i></a>
+        <a href="https://wa.me/+2347026403051"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/saviourraphael1/profilecard/?igsh=Y2pzbzh5Y3o0ZWh1"><i class="fab fa-instagram"></i></a>
+        <a href="https://ng.linkedin.com/in/saviour-raphael-2a4ba2261"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/Saveyourworld"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-column">
+        <h3>Saviour Raphael</h3>
+        <p>
+          "Great web design without functionality is like a sport car with no engine." - Paul Cookson
+        </p>
+        <p>
+          "Let us take you into a deeper experience, make a moment a lasting conveyable memory. Let us help build your tribe." - Deep Immerson  
+        </p>
+      </div>
+      <div class="footer-column">
+        <h3>New Products</h3>
+        <ul>
+          <li><a href="https://mynextrends.com/Solar">Solar Generator</a></li>
+          <li><a href="https://selar.co/p/oftz?affiliate=oorn">BGW Regular</a></li>
+          <li><a href="https://MYD.selar.co/6wt3s0?affiliate=unmv">Hausa Trading Masterclass</a></li>
+          <li><a href="https://selar.co/p/btrl?affiliate=52ws">BODHI Trading</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Go To</h3>
+        <ul>
+          <li><a href="file:///C:/Users/SaveYour/Desktop/port/index.html">Home</a></li>
+          <li><a href="file:///C:/Users/SaveYour/Desktop/port/about.html">About</a></li>
+          <li><a href="file:///C:/Users/SaveYour/Desktop/port/portfolio.html">Portfolio</a></li>
+          <li><a href="file:///C:/Users/SaveYour/Desktop/port/contact.html">Contact</a></li>
+          <li><a href="https://t.me/savyworld">Join my team</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contact</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> Lekki, Lagos 101245, Nigeria</li>
+          <li><i class="fas fa-envelope"></i> saveyourraphael@gmail.com</li>
+          <li><i class="fas fa-phone"></i> +234 702 640 3051</li>
+          <li><i class="fas fa-print"></i> +234 915 413 1744</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 My Portfolio | Designed with ❤️ by <a href="https://wa.me/+2347026403051">Saviour Raphael</a></p>
+    </div>
+  </footer>
+<script src="script.js" defer></script>
+</body>
+</html>
